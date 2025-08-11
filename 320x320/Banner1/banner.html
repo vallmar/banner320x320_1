@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner 320x320 Banner1</title>
+    
+    <!-- Adform DHTML Library - Required for Adform compliance -->
+    <script>
+        document.write('<script src="' + (window.API_URL || 'https://s1.adform.net/banners/scripts/rmb/Adform.DHTML.js?bv=' + Math.random()) + '"><\/script>');
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .banner {
+            width: 320px;
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            cursor: pointer;
+        }
+        
+        .background {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .jpg-overlay {
+            position: absolute;
+            z-index: 1;
+            top: 35px;
+            left: 20px;
+        }
+        
+        .splash {
+            position: absolute;
+            top: 0px;
+            left: 62px;
+            width: 190px;
+            z-index: 2;
+            transform-origin: top center;
+            --splash-overlay: #27221f;
+            will-change: transform, opacity;
+        }
+
+        .splash::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            background: var(--splash-overlay);
+            clip-path: ellipse(50% 100% at 50% 0%);
+            opacity: 0;
+            transform: scale(0);
+            transform-origin: top center;
+            will-change: transform, opacity;
+        }
+
+        @keyframes splashHalfCircle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+                filter: blur(6px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes overlayFade {
+            to { opacity: 0; }
+        }
+        
+        .cta {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 174px;
+            top: 215px;
+            left: 73px;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        /* Light sweep re-trigger */
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: lightSweep 7.5s ease-out;
+    animation-delay: 4s; /* sync with first time we reach second view */
+    animation-iteration-count: onetime;
+    animation-play-state: running;
+}
+
+/* We control timing by matching animation duration to slideViews */
+@keyframes lightSweep {
+    0% {
+        left: -100%;
+    }
+    20% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+        
+        .cta:hover {
+            transform: scale(1.05);
+        }
+        
+        .cta svg {
+            width: auto;
+            height: auto;
+        }
+        
+        @keyframes ctaLightSweep {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+
+     
+
+        .view {
+            width: 50%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @keyframes slideViews {
+    0% {
+        transform: translateX(0);
+    }
+    25% { /* pause on first view */
+        transform: translateX(0);
+    }
+    35% { /* slide to second */
+        transform: translateX(-50%);
+    }
+    60% { /* pause on second view */
+        transform: translateX(-50%);
+    }
+    70% { /* slide back to first */
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.views-container {
+    width: 200%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: slideViews 10s ease-in-out infinite;
+}
+    </style>
+</head>
+<body>
+    <div class="banner" id="banner">
+        <div class="views-container">
+            <div class="view">
+                <img src="Banner-320x320-1a.svg" alt="View 1 Background" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="jpg-overlay">
+                    <img src="Banner-320x320-1A.jpg" alt="Banner Overlay" style="width: 280px; height: auto;">
+                </div>
+            </div>
+            <div class="view">
+                <img src="Banner-320x320-1b.svg" alt="View 2 Background" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="splash">
+                    <img src="SPLASH.svg" alt="Exclusive Preview">
+                </div>
+                <div class="cta">
+                    <img src="CTA-BANNER-320x320-1.svg" alt="Call to Action">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Adform compliance script
+        (function() {
+            'use strict';
+            
+            var banner = document.getElementById('banner');
+            var clickTracked = false;
+            
+            // Get clickTAG value using Adform DHTML library
+            var clickTAGvalue = dhtml.getVar('clickTAG', 'https://www.birgerbostad.se');
+            console.log('clickTAG:', clickTAGvalue);
+            
+            // Click tracking function
+            function trackClick() {
+                if (clickTracked) return;
+                clickTracked = true;
+                
+                try {
+                    // Adform click tracking
+                    if (typeof window.adform !== 'undefined' && window.adform.track) {
+                        window.adform.track();
+                    }
+                    
+                    // Use clickTAG value for landing page
+                    window.open(clickTAGvalue, '_blank');
+                } catch (e) {
+                    console.log('Click tracking error:', e);
+                    // Fallback to clickTAG value
+                    window.open(clickTAGvalue, '_blank');
+                }
+            }
+            
+            // Exit tracking function
+            function trackExit() {
+                try {
+                    if (typeof window.adform !== 'undefined' && window.adform.trackExit) {
+                        window.adform.trackExit();
+                    }
+                } catch (e) {
+                    console.log('Exit tracking error:', e);
+                }
+            }
+            
+            // Event listeners
+            banner.addEventListener('click', trackClick);
+            banner.addEventListener('mouseleave', trackExit);
+            
+            // Touch events for mobile
+            banner.addEventListener('touchend', trackClick);
+            
+            // Fallback for non-JavaScript environments
+            banner.style.cursor = 'pointer';
+            
+            // Animation completion tracking
+            setTimeout(function() {
+                try {
+                    if (typeof window.adform !== 'undefined' && window.adform.trackImpression) {
+                        window.adform.trackImpression();
+                    }
+                } catch (e) {
+                    console.log('Impression tracking error:', e);
+                }
+            }, 3500); // After all animations complete (0.5s + 1.2s + 2s + buffer)
+            
+        })();
+    </script>
+</body>
+</html>
