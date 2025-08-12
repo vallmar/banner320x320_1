@@ -160,7 +160,6 @@
             
             // Get clickTAG value using Adform DHTML library
             var clickTAGvalue = dhtml.getVar('clickTAG', 'https://www.birgerbostad.se');
-            console.log('clickTAG:', clickTAGvalue);
             
             // Click tracking function
             function trackClick() {
@@ -176,7 +175,7 @@
                     // Use clickTAG value for landing page
                     window.open(clickTAGvalue, '_blank');
                 } catch (e) {
-                    console.log('Click tracking error:', e);
+ 
                     // Fallback to clickTAG value
                     window.open(clickTAGvalue, '_blank');
                 }
@@ -189,16 +188,13 @@
                         window.adform.trackExit();
                     }
                 } catch (e) {
-                    console.log('Exit tracking error:', e);
+                     
                 }
             }
             
             // Event listeners
             banner.addEventListener('click', trackClick);
-            banner.addEventListener('mouseleave', trackExit);
             
-            // Touch events for mobile
-            banner.addEventListener('touchend', trackClick);
             
             // Fallback for non-JavaScript environments
             banner.style.cursor = 'pointer';
@@ -210,7 +206,7 @@
                         window.adform.trackImpression();
                     }
                 } catch (e) {
-                    console.log('Impression tracking error:', e);
+                      
                 }
             }, 3500); // After all animations complete (0.5s + 1.2s + 2s + buffer)
             

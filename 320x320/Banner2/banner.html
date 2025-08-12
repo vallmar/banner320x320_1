@@ -173,7 +173,7 @@
             var clickTracked = false;
             
             var clickTAGvalue = dhtml.getVar('clickTAG', 'https://www.birgerbostad.se');
-            console.log('clickTAG:', clickTAGvalue);
+             
             
             function trackClick() {
                 if (clickTracked) return;
@@ -185,7 +185,7 @@
                     }
                     window.open(clickTAGvalue, '_blank');
                 } catch (e) {
-                    console.log('Click tracking error:', e);
+ 
                     window.open(clickTAGvalue, '_blank');
                 }
             }
@@ -196,7 +196,7 @@
                         window.adform.trackExit();
                     }
                 } catch (e) {
-                    console.log('Exit tracking error:', e);
+                     
                 }
             }
             
@@ -211,7 +211,7 @@
                         window.adform.trackImpression();
                     }
                 } catch (e) {
-                    console.log('Impression tracking error:', e);
+                      
                 }
             }, 3500);
         })();
