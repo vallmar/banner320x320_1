@@ -14,7 +14,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Sora', sans-serif;
         }
         
         .banner {
@@ -55,6 +55,12 @@
             animation: splashHalfCircle 1.2s ease-out 0.5s forwards;
             --splash-overlay: #27221f;
             will-change: transform, opacity;
+            background-color: #27221f;
+            clip-path: ellipse(50% 100% at 50% 0%);
+            color: white;
+            text-align: center;
+            font-weight: 100;
+            font-variant: normal;
         }
 
         .splash::after {
@@ -142,7 +148,10 @@
             <img src="CTA-BANNER-980X240-2.svg" alt="Call to Action">
         </div>
         <div class="splash">
-            <img src="SPLASH.svg" alt="Exclusive Preview">
+            <div style="font-size: 11px; padding: 4px 0;">EXKLUSIV<br>FÖRHANDSVISNING<br></div>
+            <div style="font-size: 37px; line-height: 37px; padding-bottom: 2px;">3/9<br></div>
+            <div style="font-size: 11px;">17:00-19:00</div>
+             
         </div>
     </div>
 
